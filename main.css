@@ -30,6 +30,7 @@ body {
 	isolation: isolate;
 	margin: 0;
 	min-height: 100vh;
+	overflow-x: hidden;
 	font-family: "VT323", monospace;
 	font-size: 1.4rem;
 	line-height: 1.25;
@@ -194,28 +195,66 @@ main {
 #midterm,
 #exam,
 #socials {
-	opacity: 0;
-	animation: reveal 420ms steps(6, end) forwards;
+	opacity: 1;
 }
 
 #about {
-	animation-delay: 80ms;
+	min-height: auto;
 }
 
 #midterm {
-	animation-delay: 140ms;
 	min-height: auto;
 	padding-bottom: 0.6rem;
 }
 
 #exam {
-	animation-delay: 200ms;
 	min-height: auto;
 	padding-top: 0.6rem;
 }
 
 #socials {
-	animation-delay: 260ms;
+	min-height: auto;
+}
+
+.panel:not(#home) .section-shell > h2,
+.panel:not(#home) .section-shell > p,
+.panel:not(#home) .section-shell > .info-grid,
+.panel:not(#home) .section-shell > .midterm-grid,
+.panel:not(#home) .section-shell > .social-grid {
+	opacity: 0;
+	transform: translateY(18px) scale(0.94);
+	transition: transform 780ms cubic-bezier(0.18, 0.9, 0.24, 1), opacity 620ms ease-out;
+	will-change: transform, opacity;
+}
+
+.panel:not(#home).is-visible .section-shell > h2,
+.panel:not(#home).is-visible .section-shell > p,
+.panel:not(#home).is-visible .section-shell > .info-grid,
+.panel:not(#home).is-visible .section-shell > .midterm-grid,
+.panel:not(#home).is-visible .section-shell > .social-grid {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+}
+
+.panel.no-pop .section-shell > h2,
+.panel.no-pop .section-shell > p,
+.panel.no-pop .section-shell > .info-grid,
+.panel.no-pop .section-shell > .midterm-grid,
+.panel.no-pop .section-shell > .social-grid,
+.panel.no-pop .card {
+	transition: none;
+}
+
+.scroll-pop {
+	opacity: 0;
+	transform: translateY(18px) scale(0.94);
+	transition: transform 780ms cubic-bezier(0.18, 0.9, 0.24, 1), opacity 620ms ease-out;
+	will-change: transform, opacity;
+}
+
+.scroll-pop.is-visible {
+	opacity: 1;
+	transform: translateY(0) scale(1);
 }
 
 .hero {
@@ -355,17 +394,22 @@ main {
 	border: var(--pixel-border);
 	background: #fff6ea;
 	box-shadow: var(--pixel-shadow);
-	animation: pop-in 360ms steps(6, end) both;
+	opacity: 0;
+	transform: translateY(12px) scale(0.92);
+	transition: transform 700ms cubic-bezier(0.2, 0.88, 0.24, 1), opacity 560ms ease-out;
 }
 
-.midterm-grid .card:nth-child(2),
+.panel.is-visible .card {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+}
+
 .info-grid .card:nth-child(2) {
-	animation-delay: 80ms;
+	transition-delay: 140ms;
 }
 
-.midterm-grid .card:nth-child(3),
 .info-grid .card:nth-child(3) {
-	animation-delay: 150ms;
+	transition-delay: 240ms;
 }
 
 .card h3,
@@ -544,6 +588,18 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.panel:not(#home) .section-shell > h2,
+	.panel:not(#home) .section-shell > p,
+	.panel:not(#home) .section-shell > .info-grid,
+	.panel:not(#home) .section-shell > .midterm-grid,
+	.panel:not(#home) .section-shell > .social-grid,
+	.scroll-pop,
+	.card {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
 	#home .typewriter-name {
 		width: auto;
 		border-right: 0;
@@ -558,13 +614,16 @@ main {
 	}
 
 	.topbar {
-		padding: 0.65rem 0.45rem 0.2rem;
+		padding: 0.55rem 0.5rem 0.2rem;
 	}
 
 	.jump-nav {
-		gap: 0.45rem;
-		padding: 0.5rem 0.55rem 0.42rem;
+		width: min(100%, 460px);
+		gap: 0.35rem;
+		padding: 0.45rem;
 		font-size: 0.58rem;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
 	.jump-nav .nav-symbol {
@@ -577,8 +636,15 @@ main {
 		display: none;
 	}
 
+	.jump-nav a {
+		width: 100%;
+		padding: 0.56rem 0.5rem 0.5rem;
+	}
+
 	.panel {
-		padding: 3.2rem 0.8rem;
+		min-height: auto;
+		padding: 2.25rem 0.85rem;
+		scroll-margin-top: 6rem;
 	}
 
 	.site-footnote {
@@ -605,11 +671,47 @@ main {
 
 	.hero-copy,
 	.section-shell {
-		padding: 1rem;
+		padding: 0.95rem;
+		width: 100%;
+	}
+
+	.hero-copy h1 {
+		font-size: clamp(1.08rem, 8vw, 1.7rem);
+		line-height: 1.35;
+	}
+
+	#home .typewriter-name {
+		width: auto;
+		white-space: normal;
+		border-right: 0;
+		animation: none;
+	}
+
+	.hero-copy p {
+		font-size: clamp(1rem, 5.5vw, 1.35rem);
+	}
+
+	.section-title {
+		font-size: clamp(0.95rem, 5vw, 1.35rem);
+	}
+
+	.section-copy {
+		font-size: clamp(1.05rem, 4.8vw, 1.25rem);
+		line-height: 1.35;
+	}
+
+	.info-grid,
+	.midterm-grid {
+		grid-template-columns: 1fr;
+		gap: 0.8rem;
 	}
 
 	.card {
 		padding: 0.85rem 0.85rem 0.95rem;
+	}
+
+	.link-list {
+		gap: 0.52rem;
 	}
 
 	.pill-link,
@@ -618,11 +720,50 @@ main {
 		width: 100%;
 		font-size: 0.57rem;
 		line-height: 1.5;
+		padding: 0.58rem 0.56rem 0.52rem;
+	}
+
+	.social-grid {
+		gap: 0.5rem;
 	}
 
 	.social-grid .social-link {
 		width: 2.85rem;
 		height: 2.85rem;
 		line-height: 1;
+	}
+}
+
+@media (max-width: 420px) {
+	body {
+		font-size: 1.15rem;
+		background-size: 20px 20px;
+	}
+
+	.topbar {
+		padding-inline: 0.35rem;
+	}
+
+	.jump-nav {
+		font-size: 0.52rem;
+		padding: 0.35rem;
+	}
+
+	.panel {
+		padding: 1.9rem 0.6rem;
+	}
+
+	.hero-copy,
+	.section-shell {
+		padding: 0.8rem;
+	}
+
+	.between-message p {
+		font-size: 0.48rem;
+	}
+
+	.social-grid .social-link {
+		width: 2.65rem;
+		height: 2.65rem;
 	}
 }

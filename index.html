@@ -154,6 +154,28 @@
 
 	<script>
 		const navLinks = Array.from(document.querySelectorAll('.jump-nav a[href^="#"]'));
+		const instantHashKey = 'instantHashNav';
+		const shouldUseInstantHash = sessionStorage.getItem(instantHashKey) === '1';
+
+		if (shouldUseInstantHash && window.location.hash) {
+			document.documentElement.style.scrollBehavior = 'auto';
+			const instantTarget = document.querySelector(window.location.hash);
+			const examPanel = document.querySelector('#exam');
+			if (examPanel) {
+				examPanel.classList.add('no-pop');
+				examPanel.classList.add('is-visible');
+			}
+			if (instantTarget) {
+				instantTarget.classList.add('no-pop');
+				instantTarget.classList.add('is-visible');
+				instantTarget.scrollIntoView({ block: 'start' });
+			}
+			sessionStorage.removeItem(instantHashKey);
+			requestAnimationFrame(() => {
+				document.documentElement.style.scrollBehavior = '';
+			});
+		}
+
 		const sections = navLinks
 			.map((link) => document.querySelector(link.getAttribute('href')))
 			.filter(Boolean);
@@ -179,6 +201,32 @@
 		sections.forEach((section) => sectionObserver.observe(section));
 		setActiveNav('home');
 
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const revealPanels = Array.from(document.querySelectorAll('.panel'));
+
+		if (reducedMotion) {
+			revealPanels.forEach((panel) => panel.classList.add('is-visible'));
+		} else {
+			const revealObserver = new IntersectionObserver(
+				(entries, observer) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ rootMargin: '0px 0px -14% 0px', threshold: 0.2 }
+			);
+
+			revealPanels.forEach((panel, index) => {
+				if (index === 0) {
+					panel.classList.add('is-visible');
+				}
+				revealObserver.observe(panel);
+			});
+		}
+
 		const rotatingText = document.querySelector('.between-message-text');
 		const rotatingPhrases = [
 			'Welcome to my e-portfolio...',
@@ -186,7 +234,6 @@
 			"Let's connect!"
 		];
 
-		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		if (rotatingText) {
 			if (reducedMotion) {
 				rotatingText.textContent = rotatingPhrases[0];
