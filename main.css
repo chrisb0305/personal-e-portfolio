@@ -15,6 +15,10 @@
 	--pixel-border: 3px solid var(--ink);
 	--pixel-shadow: 4px 4px 0 #8ca1ca;
 	--section-shadow: 8px 8px 0 #a1b5d6;
+	--panel-radius: 14px;
+	--card-radius: 12px;
+	--control-radius: 10px;
+	--small-radius: 8px;
 }
 
 * {
@@ -37,9 +41,11 @@ body {
 	color: var(--ink);
 	background-color: var(--page);
 	background-image:
-		linear-gradient(var(--grid-line) 2px, transparent 2px),
-		linear-gradient(90deg, var(--grid-line) 2px, transparent 2px);
-	background-size: 32px 32px;
+		radial-gradient(circle at center, rgba(179, 235, 242, 0) 48%, rgba(140, 161, 202, 0.2) 100%),
+		linear-gradient(var(--grid-line) 1px, transparent 1px),
+		linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+	background-repeat: no-repeat, repeat, repeat;
+	background-size: 100% 100%, 44px 44px, 44px 44px;
 }
 
 body::before,
@@ -78,6 +84,7 @@ main {
 	margin: 0 1.2rem 1.6rem;
 	padding: 0.8rem 1rem 0.72rem;
 	border: var(--pixel-border);
+	border-radius: var(--panel-radius);
 	background: #ffb2c1;
 	box-shadow: var(--pixel-shadow);
 	text-align: center;
@@ -127,6 +134,7 @@ main {
 	gap: 0.7rem;
 	padding: 0.62rem 0.8rem 0.55rem;
 	border: var(--pixel-border);
+	border-radius: var(--panel-radius);
 	background: rgba(244, 230, 210, 0.72);
 	box-shadow: 6px 6px 0 #8ca1ca;
 	font-family: "Press Start 2P", monospace;
@@ -142,6 +150,7 @@ main {
 	justify-content: center;
 	padding: 0.7rem 0.85rem 0.62rem;
 	border: var(--pixel-border);
+	border-radius: var(--control-radius);
 	background: var(--paper);
 	box-shadow: var(--pixel-shadow);
 	transition: transform 120ms steps(2, end), box-shadow 120ms steps(2, end), background-color 120ms steps(2, end);
@@ -270,6 +279,7 @@ main {
 .section-shell {
 	padding: clamp(1.35rem, 3vw, 2rem);
 	border: var(--pixel-border);
+	border-radius: var(--panel-radius);
 	background: var(--paper);
 	box-shadow: var(--section-shadow);
 	position: relative;
@@ -284,6 +294,7 @@ main {
 	content: "";
 	position: absolute;
 	inset: 9px;
+	border-radius: calc(var(--panel-radius) - 4px);
 	border: 2px dashed rgba(63, 40, 48, 0.35);
 	pointer-events: none;
 }
@@ -322,6 +333,11 @@ main {
 	letter-spacing: 0.02em;
 }
 
+body.midterm-entry .hero-copy p,
+body.midterm-entry .hero-copy h1 {
+	text-transform: none;
+}
+
 .between-message {
 	display: flex;
 	justify-content: center;
@@ -332,6 +348,7 @@ main {
 	margin: 0;
 	padding: 0.7rem 1rem 0.62rem;
 	border: var(--pixel-border);
+	border-radius: var(--control-radius);
 	background: #fff6ea;
 	box-shadow: var(--pixel-shadow);
 	font-family: "Press Start 2P", monospace;
@@ -366,6 +383,20 @@ main {
 	color: var(--ink-soft);
 }
 
+.explanation-text {
+	text-align: justify;
+	text-indent: 3ch;
+}
+
+.section-divider {
+	display: block;
+	width: 100%;
+	margin: 0.35rem auto 0.85rem;
+	border: 0;
+	border-top: 3px solid var(--ink);
+	box-shadow: 0 2px 0 rgba(140, 161, 202, 0.35);
+}
+
 .info-grid,
 .midterm-grid,
 .social-grid {
@@ -375,11 +406,11 @@ main {
 }
 
 .info-grid {
-	grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .midterm-grid {
-	grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .social-grid {
@@ -392,6 +423,7 @@ main {
 	text-align: left;
 	padding: 1rem 1rem 1.1rem;
 	border: var(--pixel-border);
+	border-radius: var(--card-radius);
 	background: #fff6ea;
 	box-shadow: var(--pixel-shadow);
 	opacity: 0;
@@ -402,6 +434,11 @@ main {
 .panel.is-visible .card {
 	opacity: 1;
 	transform: translateY(0) scale(1);
+}
+
+.panel.is-visible .card:hover,
+.panel.is-visible .card:focus-within {
+	transform: translateY(-4px) scale(1.06);
 }
 
 .info-grid .card:nth-child(2) {
@@ -451,6 +488,7 @@ main {
 	justify-content: center;
 	padding: 0.63rem 0.78rem 0.55rem;
 	border: var(--pixel-border);
+	border-radius: var(--control-radius);
 	font-family: "Press Start 2P", monospace;
 	font-size: 0.64rem;
 	text-transform: uppercase;
@@ -471,6 +509,7 @@ main {
 	max-width: none;
 	padding: 0;
 	line-height: 1;
+	border-radius: var(--control-radius);
 	background: #ffd596;
 }
 
@@ -494,6 +533,7 @@ main {
 }
 
 .return-link {
+	border-radius: var(--control-radius);
 	background: #ffb2c1;
 }
 
@@ -523,6 +563,7 @@ main {
 	display: inline-block;
 	padding: 0.8rem 1.2rem 0.7rem;
 	border: var(--pixel-border);
+	border-radius: var(--small-radius);
 	box-shadow: var(--pixel-shadow);
 	background: #ffe58b;
 	font-family: "Press Start 2P", monospace;
@@ -610,7 +651,7 @@ main {
 @media (max-width: 760px) {
 	body {
 		font-size: 1.25rem;
-		background-size: 24px 24px;
+		background-size: 100% 100%, 34px 34px, 34px 34px;
 	}
 
 	.topbar {
@@ -737,7 +778,7 @@ main {
 @media (max-width: 420px) {
 	body {
 		font-size: 1.15rem;
-		background-size: 20px 20px;
+		background-size: 100% 100%, 30px 30px, 30px 30px;
 	}
 
 	.topbar {
