@@ -1682,3 +1682,61 @@ body.midterm-entry .hero-copy h1 {
 	line-height: 1.55;
 	text-align: left;
 }
+
+.file-attachments {
+	margin-top: 1rem;
+	padding: 1rem 1.1rem;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: fit-content;
+	max-width: 100%;
+	background-color: color-mix(in srgb, var(--surface-card) 75%, var(--paper) 25%);
+	border: var(--pixel-border);
+	border-radius: var(--small-radius);
+	box-shadow: var(--pixel-shadow);
+}
+
+.file-attachments h4 {
+	margin: 0 0 0.65rem;
+	font-family: "Press Start 2P", cursive;
+	font-size: 0.78rem;
+	line-height: 1.5;
+	text-transform: uppercase;
+	color: var(--ink);
+}
+
+.download-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.6rem 0.8rem 0.55rem;
+	border: var(--pixel-border);
+	border-radius: var(--control-radius);
+	background: var(--surface-toggle);
+	box-shadow: var(--pixel-shadow);
+	font-family: "Press Start 2P", monospace;
+	font-size: 0.58rem;
+	line-height: 1.5;
+	text-transform: uppercase;
+	color: var(--ink);
+	transition: transform 120ms steps(2, end), box-shadow 120ms steps(2, end), background-color 120ms steps(2, end);
+}
+
+.download-link:hover,
+.download-link:focus-visible {
+	outline: none;
+	transform: translate(-2px, -2px);
+	box-shadow: 6px 6px 0 var(--hover-shadow);
+	background: var(--hover-fill);
+}
+
+@media (max-width: 760px) {
+	.file-attachments {
+		padding: 0.85rem 0.9rem;
+	}
+
+	.download-link {
+		font-size: 0.53rem;
+	}
+}

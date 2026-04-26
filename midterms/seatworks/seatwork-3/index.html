@@ -45,6 +45,94 @@
         <p class="explanation-text">The activity was easy for me since I had already grasped the concept of methods—similar to functions in 
           Python programming—as well as the Scanner class. Overall, it was a very fun and worthwhile task.
         </p>
+        <br>
+
+        <div class="code-window">
+          <div class="code-window-header">
+          <div class="code-window-controls">
+            <span class="control red"></span>
+            <span class="control yellow"></span>
+            <span class="control green"></span>
+          </div>
+          <span class="code-window-title">StudentGradeEvaluator.java</span>
+          </div>
+          <pre class="code-window-content"><span class="keyword">import</span> <span class="class">java.util.Scanner</span>;
+
+    <span class="keyword">public</span> <span class="keyword">class</span> <span class="class">StudentGradeEvaluator</span> {
+    
+      <span class="comment">// Method to validate grade input</span>
+      <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> getGrade(Scanner input, String gradeType) {
+        <span class="keyword">double</span> grade = -<span class="number">1</span>;
+        <span class="keyword">while</span> (grade &lt; <span class="number">0</span> || grade &gt; <span class="number">100</span>) {
+          System.out.print(gradeType + <span class="string">" Grade: "</span>);
+          <span class="keyword">if</span> (input.hasNextDouble()) {
+            grade = input.nextDouble();
+            <span class="keyword">if</span> (grade &lt; <span class="number">0</span> || grade &gt; <span class="number">100</span>) {
+              System.out.println(<span class="string">"Invalid grade input."</span>);
+            }
+          } <span class="keyword">else</span> {
+            System.out.println(<span class="string">"Invalid grade input."</span>);
+            input.next(); <span class="comment">// clears invalid input</span>
+          }
+        }
+        <span class="keyword">return</span> grade;
+      }
+
+      <span class="comment">// Method to compute average</span>
+      <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> computeAve(<span class="keyword">double</span> pre, <span class="keyword">double</span> mid, <span class="keyword">double</span> fin) {
+        <span class="keyword">return</span> (pre + mid + fin) / <span class="number">3</span>;
+      }
+
+      <span class="comment">// Method to determine remark</span>
+      <span class="keyword">public</span> <span class="keyword">static</span> String gradeMark(<span class="keyword">double</span> average) {
+        <span class="keyword">if</span> (average &gt;= <span class="number">90</span> &amp;&amp; average &lt;= <span class="number">100</span>) {
+          <span class="keyword">return</span> <span class="string">"Excellent"</span>;
+        } <span class="keyword">else</span> <span class="keyword">if</span> (average &gt;= <span class="number">80</span> &amp;&amp; average &lt;= <span class="number">89</span>) {
+          <span class="keyword">return</span> <span class="string">"Very Good"</span>;
+        } <span class="keyword">else</span> <span class="keyword">if</span> (average &gt;= <span class="number">75</span> &amp;&amp; average &lt;= <span class="number">79</span>) {
+          <span class="keyword">return</span> <span class="string">"Good"</span>;
+        } <span class="keyword">else</span> {
+          <span class="keyword">return</span> <span class="string">"Failed"</span>;
+        }
+      }
+
+      <span class="comment">// Main method</span>
+      <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        Scanner input = <span class="keyword">new</span> Scanner(System.in);
+
+        <span class="comment">// Get student name</span>
+        System.out.print(<span class="string">"Student Name: "</span>);
+        String studentName = input.nextLine();
+
+        <span class="comment">// Get and validate grades</span>
+        <span class="keyword">double</span> prelimGrade = getGrade(input, <span class="string">"Prelim"</span>);
+        <span class="keyword">double</span> midtermGrade = getGrade(input, <span class="string">"Midterm"</span>);
+        <span class="keyword">double</span> finalGrade = getGrade(input, <span class="string">"Final"</span>);
+
+        <span class="comment">// Compute average</span>
+        <span class="keyword">double</span> average = computeAve(prelimGrade, midtermGrade, finalGrade);
+
+        <span class="comment">// Output</span>
+        System.out.println(<span class="string">"\nStudent Name: "</span> + studentName);
+        System.out.printf(<span class="string">"Average: %.2f\n"</span>, average);
+        System.out.println(<span class="string">"Remark: "</span> + gradeMark(average));
+
+        input.close();
+      }
+    }</pre>
+        </div>
+
+        <div class="terminal-output">
+          <span class="terminal-title">Terminal</span>
+          <pre class="terminal-content">Student Name: Christopher Balana
+Prelim Grade: 98
+Midterm Grade: 91
+Final Grade: 90
+
+Student Name: Christopher Balana
+Average: 93.00
+Remark: Excellent</pre>
+        </div>
 
       </div>
     </section>

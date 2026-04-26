@@ -43,8 +43,57 @@
         <br>
         <p class="explanation-text">This seatwork was not hard, but given my state at the time, 
           I struggled to remember the new concepts that had just been introduced.
+          Resulting in making guesses on what correct java syntax to use.
         </p>
+        <br>
+        <p class="explanation-text">Here's a simple java program that utilizes Scanner class and the if-statement based on my learnings: </p>
+        <br>
 
+        <div class="code-window">
+          <div class="code-window-header">
+            <div class="code-window-controls">
+              <span class="control red"></span>
+              <span class="control yellow"></span>
+              <span class="control green"></span>
+            </div>
+            <span class="code-window-title">GradeChecker.java</span>
+          </div>
+          <pre class="code-window-content"><span class="keyword">import</span> <span class="class">java.util.Scanner</span>;
+
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="class">GradeChecker</span> {
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        Scanner sc = <span class="keyword">new</span> Scanner(System.in);
+
+        <span class="comment">// Ask user for input</span>
+        System.out.print(<span class="string">"Enter your grade: "</span>);
+        <span class="keyword">int</span> grade = sc.nextInt();
+
+        <span class="comment">// Use if-statements to classify grade</span>
+        <span class="keyword">if</span> (grade &gt;= <span class="number">90</span>) {
+            System.out.println(<span class="string">"Excellent!"</span>);
+        } <span class="keyword">else</span> <span class="keyword">if</span> (grade &gt;= <span class="number">75</span>) {
+            System.out.println(<span class="string">"Passed."</span>);
+        } <span class="keyword">else</span> {
+            System.out.println(<span class="string">"Failed."</span>);
+        }
+
+        sc.close();
+    }
+}</pre>
+        </div>
+
+  <div class="terminal-output">
+    <span class="terminal-title">Terminal</span>
+    <pre class="terminal-content">Enter your grade: 92
+Excellent!
+
+Enter your grade: 80
+Passed.
+
+Enter your grade: 60
+Failed.</pre>
+  </div>
+        
       </div>
     </section>
     <button class="scroll-top-btn" aria-label="Back to top">↑ Top</button>
