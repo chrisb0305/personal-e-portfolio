@@ -746,6 +746,16 @@ body.midterm-entry .hero-copy h1 {
 	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
+.midterm-grid .card {
+	position: relative;
+	z-index: 1;
+}
+
+.midterm-grid .card:hover,
+.midterm-grid .card:focus-within {
+	z-index: 20;
+}
+
 .social-grid {
 	grid-template-columns: repeat(3, max-content);
 	justify-content: center;
@@ -836,6 +846,67 @@ body.midterm-entry .hero-copy h1 {
 	background: var(--surface-pill);
 }
 
+.midterm-task-link {
+	position: relative;
+	overflow: visible;
+	isolation: isolate;
+}
+
+.midterm-task-link::after {
+	content: attr(data-full-title);
+	position: absolute;
+	left: 50%;
+	bottom: calc(100% + 0.65rem);
+	transform: translate(-50%, 6px);
+	padding: 0.58rem 0.72rem 0.52rem;
+	width: max-content;
+	max-width: min(24rem, 72vw);
+	border: var(--pixel-border);
+	border-radius: var(--small-radius);
+	background: var(--ink);
+	color: var(--paper);
+	box-shadow: var(--pixel-shadow);
+	font-family: "Press Start 2P", monospace;
+	font-size: 0.5rem;
+	line-height: 1.6;
+	text-transform: none;
+	text-align: center;
+	white-space: normal;
+	pointer-events: none;
+	opacity: 0;
+	z-index: 5;
+	transition: opacity 130ms ease-out, transform 130ms ease-out;
+}
+
+.midterm-task-link::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: calc(100% + 0.26rem);
+	width: 0.62rem;
+	height: 0.62rem;
+	border-left: var(--pixel-border);
+	border-bottom: var(--pixel-border);
+	background: var(--ink);
+	transform: translateX(-50%) rotate(-45deg);
+	opacity: 0;
+	pointer-events: none;
+	z-index: 4;
+	transition: opacity 130ms ease-out;
+}
+
+.midterm-task-link:hover::after,
+.midterm-task-link:hover::before,
+.midterm-task-link:focus-visible::after,
+.midterm-task-link:focus-visible::before {
+	opacity: 1;
+}
+
+.midterm-task-link:hover::after,
+.midterm-task-link:focus-visible::after {
+	transform: translate(-50%, 0);
+}
+
 .social-link {
 	width: 3.2rem;
 	height: 3.2rem;
@@ -844,6 +915,64 @@ body.midterm-entry .hero-copy h1 {
 	line-height: 1;
 	border-radius: var(--control-radius);
 	background: var(--surface-social);
+	position: relative;
+	overflow: visible;
+	isolation: isolate;
+}
+
+.social-link[data-full-title]::after {
+	content: attr(data-full-title);
+	position: absolute;
+	left: 50%;
+	bottom: calc(100% + 0.65rem);
+	transform: translate(-50%, 6px);
+	padding: 0.58rem 0.7rem 0.52rem;
+	width: max-content;
+	max-width: min(16rem, 72vw);
+	border: var(--pixel-border);
+	border-radius: var(--small-radius);
+	background: var(--ink);
+	color: var(--paper);
+	box-shadow: var(--pixel-shadow);
+	font-family: "Press Start 2P", monospace;
+	font-size: 0.5rem;
+	line-height: 1.6;
+	text-transform: none;
+	text-align: center;
+	white-space: normal;
+	pointer-events: none;
+	opacity: 0;
+	z-index: 6;
+	transition: opacity 130ms ease-out, transform 130ms ease-out;
+}
+
+.social-link[data-full-title]::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: calc(100% + 0.26rem);
+	width: 0.62rem;
+	height: 0.62rem;
+	border-left: var(--pixel-border);
+	border-bottom: var(--pixel-border);
+	background: var(--ink);
+	transform: translateX(-50%) rotate(-45deg);
+	opacity: 0;
+	pointer-events: none;
+	z-index: 5;
+	transition: opacity 130ms ease-out;
+}
+
+.social-link[data-full-title]:hover::after,
+.social-link[data-full-title]:hover::before,
+.social-link[data-full-title]:focus-visible::after,
+.social-link[data-full-title]:focus-visible::before {
+	opacity: 1;
+}
+
+.social-link[data-full-title]:hover::after,
+.social-link[data-full-title]:focus-visible::after {
+	transform: translate(-50%, 0);
 }
 
 .social-link svg {
@@ -1195,6 +1324,22 @@ body.midterm-entry .hero-copy h1 {
 		padding: 0.58rem 0.56rem 0.52rem;
 	}
 
+	.midterm-task-link::after {
+		left: 0;
+		transform: translateY(6px);
+		max-width: min(22rem, 88vw);
+	}
+
+	.midterm-task-link:hover::after,
+	.midterm-task-link:focus-visible::after {
+		transform: translateY(0);
+	}
+
+	.midterm-task-link::before {
+		left: 1rem;
+		transform: rotate(-45deg);
+	}
+
 	.social-grid {
 		gap: 0.5rem;
 	}
@@ -1203,6 +1348,10 @@ body.midterm-entry .hero-copy h1 {
 		width: 2.85rem;
 		height: 2.85rem;
 		line-height: 1;
+	}
+
+	.social-link[data-full-title]::after {
+		max-width: min(14rem, 88vw);
 	}
 }
 
