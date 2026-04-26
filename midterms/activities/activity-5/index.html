@@ -42,6 +42,139 @@
           and experiment with how the program responds, which made it less restrictive and more creative. It was enjoyable to see how simple concepts could be expanded into 
           a functional system, making the activity both effortless and liberating.</p>
 
+        <br>
+
+        <div class="question-block">
+          <h3>Expense Tracker Implementation</h3>
+          <p>Copy the Java program below that calculates total expenses, checks whether spending is within budget, and displays a formatted result summary.</p>
+
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="code-window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+              </div>
+              <span class="code-window-title">ExpenseTrackerBalana.java</span>
+            </div>
+            <pre class="code-window-content"><span class="keyword">package</span> <span class="class">midterm</span>;
+
+<span class="keyword">import</span> <span class="class">java.util.Scanner</span>;
+
+<span class="keyword">public class</span> <span class="class">ExpenseTrackerBalana</span> {
+
+  <span class="comment">// Void method that displays program title</span>
+  <span class="keyword">static void</span> <span class="function">displayProgramTitle</span>() {
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"====================== EXPENSE TRACKER ==========================="</span>);
+  }
+
+  <span class="comment">// Non-void method that calculates expenses</span>
+  <span class="keyword">public static double</span> <span class="function">calculateExpenses</span>(<span class="keyword">double</span> food, <span class="keyword">double</span> transpo, <span class="keyword">double</span> internet, <span class="keyword">double</span> other) {
+    <span class="keyword">return</span> food + transpo + internet + other;
+  }
+
+  <span class="comment">// Non-void method that checks budget status</span>
+  <span class="keyword">public static</span> <span class="class">String</span> <span class="function">checkBudget</span>(<span class="keyword">double</span> expenses, <span class="keyword">double</span> budget) {
+    <span class="keyword">if</span> (expenses &gt; budget) {
+      <span class="keyword">return</span> <span class="string">"Over budget! You exceeded your budget by ₱"</span> + <span class="class">String</span>.<span class="function">format</span>(<span class="string">"%.2f"</span>, (expenses - budget));
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="string">"Within budget! You have ₱"</span> + <span class="class">String</span>.<span class="function">format</span>(<span class="string">"%.2f"</span>, (budget - expenses)) + <span class="string">" remaining."</span>;
+    }
+  }
+
+  <span class="comment">// Void method that display expenses result</span>
+  <span class="keyword">public static void</span> <span class="function">displayResults</span>(<span class="keyword">double</span> totalExpenses, <span class="class">String</span> budgetStatus) {
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>();
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"====================== EXPENSE TRACKER ==========================="</span>);
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>();
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">printf</span>(<span class="string">"  Total Expenses: ₱%.2f%n"</span>, totalExpenses);
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"  Budget Status:  "</span> + budgetStatus);
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>();
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"=================================================================="</span>);
+  }
+
+  <span class="keyword">public static void</span> <span class="function">main</span>(<span class="class">String</span>[] args) {
+    <span class="class">Scanner</span> input = <span class="keyword">new</span> <span class="class">Scanner</span>(<span class="class">System</span>.<span class="keyword">in</span>);
+
+    <span class="comment">// Calls void method that displays program title</span>
+    <span class="function">displayProgramTitle</span>();
+
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"\n  Enter your expenses below:"</span>);
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>();
+
+    <span class="comment">// Get user input for expenses and budget</span>
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"  Your budget: ₱"</span>);
+    <span class="keyword">double</span> budget = input.<span class="function">nextDouble</span>();
+
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"  Food expenses: ₱"</span>);
+    <span class="keyword">double</span> food = input.<span class="function">nextDouble</span>();
+
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"  Transportation expenses: ₱"</span>);
+    <span class="keyword">double</span> transportation = input.<span class="function">nextDouble</span>();
+
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"  Internet expenses: ₱"</span>);
+    <span class="keyword">double</span> internet = input.<span class="function">nextDouble</span>();
+
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"  Other expenses: ₱"</span>);
+    <span class="keyword">double</span> otherExpenses = input.<span class="function">nextDouble</span>();
+
+    <span class="comment">// Calls non-void method that calculates all expenses</span>
+    <span class="keyword">double</span> totalExpenses = <span class="function">calculateExpenses</span>(food, transportation, internet, otherExpenses);
+
+    <span class="comment">// Calls non-void method that checks budget and display budget status</span>
+    <span class="class">String</span> budgetStatus = <span class="function">checkBudget</span>(totalExpenses, budget);
+
+    <span class="comment">// Calls void method that that display expenses result</span>
+    <span class="function">displayResults</span>(totalExpenses, budgetStatus);
+
+    <span class="comment">// Close scanner to avoid memory leak</span>
+    input.<span class="function">close</span>();
+  }
+
+}</pre>
+          </div>
+
+          <div class="terminal-output">
+            <span class="terminal-title">Final Output/Result: Within budget</span>
+            <pre class="terminal-content">====================== EXPENSE TRACKER ===========================
+
+Enter your expenses below:
+
+Your budget: P20000
+Food expenses: P5000
+Transportation expenses: P2000
+Internet expenses: P1500
+Other expenses: P8000
+
+====================== EXPENSE TRACKER ===========================
+
+Total Expenses: P16500.00
+Budget Status: Within budget! You have P3500.00 remaining.
+
+==================================================================</pre>
+          </div>
+
+          <div class="terminal-output">
+            <span class="terminal-title">Final Output/Result: Over budget</span>
+            <pre class="terminal-content">====================== EXPENSE TRACKER ===========================
+
+Enter your expenses below:
+
+Your budget: P10000
+Food expenses: P5000
+Transportation expenses: P2000
+Internet expenses: P1500
+Other expenses: P5000
+
+====================== EXPENSE TRACKER ===========================
+
+Total Expenses: P13500.00
+Budget Status: Over budget! You exceeded your budget by P3500.00
+
+==================================================================</pre>
+          </div>
+        </div>
+
       </div>
     </section>
     <button class="scroll-top-btn" aria-label="Back to top">↑ Top</button>
