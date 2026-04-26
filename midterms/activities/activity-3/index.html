@@ -24,6 +24,10 @@
   <main>
     <section class="panel hero">
       <div class="panel-inner hero-copy scroll-pop">
+        <a href="../../../index.html#midterm" class="return-link" style="display: inline-flex; margin-bottom: 1.8rem; gap: 0.5rem;">
+          <span>←</span>
+          <span>Back to Midterms</span>
+        </a>
         <h1>Activity 3: Basic ATM System</h1>
         <hr class="section-divider" />
         <p>Christopher Balana | BSIT 2-5</p>
@@ -36,14 +40,243 @@
         <p class="explanation-text">For me, the task felt engaging rather than difficult. Designing the ATM system was straightforward once the rules were clear, 
           and it gave me a sense of how programming can model everyday processes. 
           It was satisfying to see the program respond interactively, making the activity both practical and enjoyable.</p>
-        <div class="link-list center-actions">
-          <a class="return-link" href="../../../index.html#midterm">Back to Midterm</a>
+        <br>
+        
+        <!-- Basic ATM System -->
+        <div class="question-block">
+          <h3>Basic ATM System Implementation</h3>
+          <p>Create a Java program that simulates a basic ATM system with features such as balance checking, deposits, withdrawals with transaction limits and balance validation, and a menu-driven interface.</p>
+          
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="code-window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+              </div>
+              <span class="code-window-title">BasicATMSystemBalana.java</span>
+            </div>
+            <pre class="code-window-content"><span class="keyword">package</span> <span class="class">midterm</span>;
+
+<span class="keyword">import</span> <span class="class">java.util.Scanner</span>;
+
+<span class="keyword">public class</span> <span class="class">BasicATMSystemBalana</span> {
+
+	<span class="keyword">public static void</span> <span class="function">main</span>(<span class="class">String</span>[] args) {
+		<span class="class">Scanner</span> sc = <span class="keyword">new</span> <span class="class">Scanner</span>(<span class="class">System</span>.<span class="keyword">in</span>);
+		
+		<span class="keyword">int</span> choice = <span class="number">0</span>;
+
+		<span class="comment">// Initial account values</span>
+		<span class="keyword">float</span> initial_balance = <span class="number">5000</span>;
+		<span class="keyword">float</span> withdraw = <span class="number">0</span>;
+		<span class="keyword">float</span> deposit = <span class="number">0</span>;
+		<span class="keyword">float</span> allowed_withdraw_amount = <span class="number">2000</span>;
+		
+		<span class="keyword">do</span> {
+			
+			<span class="comment">// Prints the ATM Menu</span>
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"===== ATM MENU ====="</span>);
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"1. Check Balance"</span>);
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"2. Deposit"</span>);
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"3. Withdraw"</span>);
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"4. Exit"</span>);
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			
+			<span class="comment">// Get user menu choice</span>
+			<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"Enter choice [1-4]: "</span>);
+			choice = sc.<span class="function">nextInt</span>();
+			
+			<span class="comment">// Execute action based on choice</span>
+			<span class="keyword">switch</span> (choice) {
+			<span class="keyword">case</span> <span class="number">1</span>:
+				<span class="comment">// Display current balance</span>
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Your balance is: ₱"</span> + <span class="class">String</span>.<span class="function">format</span>(<span class="string">"%.2f"</span>, initial_balance));
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+				<span class="keyword">break</span>;
+				
+			<span class="keyword">case</span> <span class="number">2</span>:
+				<span class="comment">// Get deposit amount and update balance</span>
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"Enter amount: ₱"</span>);
+				deposit = sc.<span class="function">nextFloat</span>();
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"You deposit: ₱"</span> + <span class="class">String</span>.<span class="function">format</span>(<span class="string">"%.2f"</span>, deposit));
+				initial_balance += deposit;
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Your new balance is: ₱"</span> + <span class="class">String</span>.<span class="function">format</span>(<span class="string">"%.2f"</span>, initial_balance));
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+				<span class="keyword">break</span>;
+				
+			<span class="keyword">case</span> <span class="number">3</span>:
+				<span class="comment">// Get withdraw amount</span>
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"Enter amount: ₱"</span>);
+				withdraw = sc.<span class="function">nextFloat</span>();
+				
+				<span class="comment">// Validate withdraw amount</span>
+				<span class="keyword">if</span> (withdraw &gt; initial_balance) {
+					<span class="comment">// Balance is not enough</span>
+			        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Insufficient balance!"</span>);
+			        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			    } <span class="keyword">else if</span> (withdraw &gt; allowed_withdraw_amount) {
+			    	<span class="comment">// Exceeds transaction limit</span>
+			        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Maximum withdraw per transaction: ₱2,000"</span>);
+			        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			    } <span class="keyword">else</span> {
+			    	<span class="comment">// Deduct and display new balance</span>
+			    	<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"You withdraw: ₱"</span> + <span class="class">String</span>.<span class="function">format</span>(<span class="string">"%.2f"</span>, withdraw));
+			        initial_balance -= withdraw;
+			        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Your new balance is: ₱"</span> + <span class="class">String</span>.<span class="function">format</span>(<span class="string">"%.2f"</span>, initial_balance));
+			        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			    }
+				<span class="keyword">break</span>;
+				
+			<span class="keyword">case</span> <span class="number">4</span>:
+				<span class="comment">// Exit the program</span>
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"Exiting program..."</span>);
+				
+				<span class="keyword">break</span>;
+				
+			<span class="keyword">default</span>:
+				<span class="comment">// Invalid choice</span>
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Invalid choice"</span>);
+				<span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+			
+			}
+		} <span class="keyword">while</span> (choice != <span class="number">4</span>); <span class="comment">// Loops until user exit</span>
+		
+		sc.<span class="function">close</span>(); <span class="comment">// Closing to avoid memory leak</span>
+		
+	}
+
+}</pre>
+          </div>
+          
+          <div class="terminal-output">
+            <span class="terminal-title">Terminal - Choice: Invalid & 1 & 2</span>
+            <pre class="terminal-content">===== ATM MENU =====
+
+1. Check Balance
+
+2. Deposit
+
+3. Withdraw
+
+4. Exit
+
+Enter choice [1-4]: 5
+Invalid choice
+
+===== ATM MENU =====
+
+1. Check Balance
+
+2. Deposit
+
+3. Withdraw
+
+4. Exit
+
+Enter choice [1-4]: 1
+
+Your balance is: ₱5000.00
+
+===== ATM MENU =====
+
+1. Check Balance
+
+2. Deposit
+
+3. Withdraw
+
+4. Exit
+
+Enter choice [1-4]: 2
+Enter amount: ₱2000
+
+You deposit: ₱2000.00
+Your new balance is: ₱7000.00</pre>
+          </div>
+          
+          <div class="terminal-output">
+            <span class="terminal-title">Terminal - Choice: 3</span>
+            <pre class="terminal-content">You deposit: ₱2000.00
+Your new balance is: ₱7000.00
+
+===== ATM MENU =====
+
+1. Check Balance
+
+2. Deposit
+
+3. Withdraw
+
+4. Exit
+
+Enter choice [1-4]: 3
+Enter amount: ₱5000
+Maximum withdraw per transaction: ₱2,000
+
+===== ATM MENU =====
+
+1. Check Balance
+
+2. Deposit
+
+3. Withdraw
+
+4. Exit
+
+Enter choice [1-4]: 3
+Enter amount: ₱2000
+
+You withdraw: ₱2000.00
+Your new balance is: ₱5000.00</pre>
+          </div>
+          
+          <div class="terminal-output">
+            <span class="terminal-title">Terminal - Choice: 3 & 4</span>
+            <pre class="terminal-content">===== ATM MENU =====
+
+1. Check Balance
+
+2. Deposit
+
+3. Withdraw
+
+4. Exit
+
+Enter choice [1-4]: 3
+Enter amount: ₱10000
+Insufficient balance!
+
+===== ATM MENU =====
+
+1. Check Balance
+
+2. Deposit
+
+3. Withdraw
+
+4. Exit
+
+Enter choice [1-4]: 4
+Exiting program...</pre>
+          </div>
         </div>
+        
+
       </div>
     </section>
-  </main>
+		<button class="scroll-top-btn" aria-label="Back to top">↑ Top</button>
+	</main>
 
   <script src="../../../theme-toggle.js"></script>
   <script src="../../reveal-pop.js"></script>
+	<script src="../../scroll-to-top.js"></script>
 </body>
 </html>

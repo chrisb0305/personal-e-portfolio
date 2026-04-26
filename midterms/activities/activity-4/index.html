@@ -24,6 +24,10 @@
   <main>
     <section class="panel hero">
       <div class="panel-inner hero-copy scroll-pop">
+        <a href="../../../index.html#midterm" class="return-link" style="display: inline-flex; margin-bottom: 1.8rem; gap: 0.5rem;">
+          <span>←</span>
+          <span>Back to Midterms</span>
+        </a>
         <h1>Activity 4: Student Enrollment Assessment System</h1>
         <hr class="section-divider" />
         <p>Christopher Balana | BSIT 2-5</p>
@@ -38,14 +42,196 @@
           The step-by-step rules made it easy to translate the requirements into code, and the logic flowed naturally once the conditions were set. 
           It was more about careful organization than difficulty, making the activity a smooth and rewarding experience.
         </p>
-        <div class="link-list center-actions">
-          <a class="return-link" href="../../../index.html#midterm">Back to Midterm</a>
+
+        <!-- Enrollment Assessment System -->
+        <div class="question-block">
+          <h3>Enrollment Assessment System Implementation</h3>
+          <p>Copy the Java program below that evaluates student admission based on entrance exam scores, interview scores, first screening results, and strand-based program recommendations.</p>
+
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="code-window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+              </div>
+              <span class="code-window-title">EnrollmentAssessmentSystemBalana.java</span>
+            </div>
+            <pre class="code-window-content"><span class="keyword">package</span> <span class="class">midterm</span>;
+
+<span class="keyword">import</span> <span class="class">java.util.Scanner</span>;
+
+<span class="keyword">public class</span> <span class="class">EnrollmentAssessmentSystemBalana</span> {
+
+  <span class="keyword">public static void</span> <span class="function">main</span>(<span class="class">String</span>[] args) {
+    <span class="class">Scanner</span> sc = <span class="keyword">new</span> <span class="class">Scanner</span>(<span class="class">System</span>.<span class="keyword">in</span>);
+		
+    <span class="comment">// Get student details</span>
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"Student Name: "</span>);
+    <span class="class">String</span> name = sc.<span class="function">nextLine</span>();
+		
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"Senior High School Strand (STEM, ABM, HUMSS, TVL, Others): "</span>);
+    <span class="class">String</span> strand = sc.<span class="function">nextLine</span>();
+		
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"Entrance Exam Score (0-100): "</span>);
+    <span class="keyword">float</span> entrance_exam_score = sc.<span class="function">nextFloat</span>();
+    sc.<span class="function">nextLine</span>(); 
+		
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"Interview Score (0-100): "</span>);
+    <span class="keyword">float</span> interview_score = sc.<span class="function">nextFloat</span>();
+    sc.<span class="function">nextLine</span>();
+		
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">print</span>(<span class="string">"First Screening Result (Pass/Fail): "</span>);
+    <span class="class">String</span> screening = sc.<span class="function">nextLine</span>();
+		
+    <span class="comment">// Compute final score (60% exam, 40% interview)</span>
+    <span class="keyword">float</span> final_score = entrance_exam_score * <span class="number">0.60f</span> + interview_score * <span class="number">0.40f</span>;
+		
+    <span class="comment">// Display assessment result</span>
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"===== ENROLLMENT ASSESSMENT RESULT ====="</span>);
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">""</span>);
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Student Name: "</span> + name);
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"SHS Strand: "</span> + strand.<span class="function">toUpperCase</span>());
+    <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Final Evaluation Score: "</span> + <span class="class">String</span>.<span class="function">format</span>(<span class="string">"%.2f"</span>, final_score));
+		
+    <span class="comment">// Determine admission result based on screening and final score</span>
+    <span class="keyword">if</span> (screening.<span class="function">equalsIgnoreCase</span>(<span class="string">"Pass"</span>)) {
+        <span class="keyword">if</span> (final_score &gt;= <span class="number">85</span>) {
+            <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Admission Result: Admitted with Scholarship"</span>);
+        } <span class="keyword">else if</span> (final_score &gt;= <span class="number">75</span>) {
+            <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Admission Result: Admitted"</span>);
+        } <span class="keyword">else if</span> (final_score &gt;= <span class="number">65</span>) {
+            <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Admission Result: Waitlisted"</span>);
+        } <span class="keyword">else</span> {
+            <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Admission Result: Not Qualified"</span>);
+        }
+    } <span class="keyword">else if</span> (screening.<span class="function">equalsIgnoreCase</span>(<span class="string">"Fail"</span>)) {
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Admission Result: Not Qualified"</span>);
+    } <span class="keyword">else</span> {
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Invalid Input."</span>);
+    }
+		
+		
+    <span class="comment">// Determine recommended program based on strand</span>
+    <span class="keyword">switch</span> (strand.<span class="function">toUpperCase</span>()) {
+    <span class="keyword">case</span> <span class="string">"STEM"</span>:
+      <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Recommended Program: BSIT / BSCS"</span>);
+      <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="string">"ABM"</span>:
+      <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Recommended Program: BSBA"</span>);
+      <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="string">"HUMSS"</span>:
+      <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Recommended Program: BSED / AB Communication"</span>);
+      <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="string">"TVL"</span>:
+      <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Recommended Program: BSIT"</span>);
+      <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="string">"OTHERS"</span>:
+      <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Recommended Program: General Program"</span>);
+      <span class="keyword">break</span>;
+    }
+		
+    sc.<span class="function">close</span>(); <span class="comment">// Closing to avoid memory leak</span>
+
+  }
+
+}</pre>
+          </div>
+
+          <div class="terminal-output">
+            <span class="terminal-title">Case: Admitted with Scholarship</span>
+            <pre class="terminal-content">Student Name: Christopher Balana
+Senior High School Strand (STEM, ABM, HUMSS, TVL, Others): STEM
+Entrance Exam Score (0-100): 98
+Interview Score (0-100): 100
+First Screening Result (Pass/Fail): Pass
+
+===== ENROLLMENT ASSESSMENT RESULT =====
+
+Student Name: Christopher Balana
+SHS Strand: STEM
+Final Evaluation Score: 98.80
+Admission Result: Admitted with Scholarship
+Recommended Program: BSIT / BSCS</pre>
+          </div>
+
+          <div class="terminal-output">
+            <span class="terminal-title">Case: Admitted</span>
+            <pre class="terminal-content">Student Name: Christopher Balana
+Senior High School Strand (STEM, ABM, HUMSS, TVL, Others): ABM
+Entrance Exam Score (0-100): 70
+Interview Score (0-100): 90
+First Screening Result (Pass/Fail): Pass
+
+===== ENROLLMENT ASSESSMENT RESULT =====
+
+Student Name: Christopher Balana
+SHS Strand: ABM
+Final Evaluation Score: 78.00
+Admission Result: Admitted
+Recommended Program: BSBA</pre>
+          </div>
+
+          <div class="terminal-output">
+            <span class="terminal-title">Case: Waitlisted</span>
+            <pre class="terminal-content">Student Name: Christopher Balana
+Senior High School Strand (STEM, ABM, HUMSS, TVL, Others): humss
+Entrance Exam Score (0-100): 50
+Interview Score (0-100): 90
+First Screening Result (Pass/Fail): Pass
+
+===== ENROLLMENT ASSESSMENT RESULT =====
+
+Student Name: Christopher Balana
+SHS Strand: HUMSS
+Final Evaluation Score: 66.00
+Admission Result: Waitlisted
+Recommended Program: BSED / AB Communication</pre>
+          </div>
+
+          <div class="terminal-output">
+            <span class="terminal-title">Case: Not Qualified</span>
+            <pre class="terminal-content">Student Name: Christopher Balana
+Senior High School Strand (STEM, ABM, HUMSS, TVL, Others): TVL
+Entrance Exam Score (0-100): 20
+Interview Score (0-100): 50
+First Screening Result (Pass/Fail): Pass
+
+===== ENROLLMENT ASSESSMENT RESULT =====
+
+Student Name: Christopher Balana
+SHS Strand: TVL
+Final Evaluation Score: 32.00
+Admission Result: Not Qualified
+Recommended Program: BSIT</pre>
+          </div>
+
+          <div class="terminal-output">
+            <span class="terminal-title">Case: Not Qualified (Screening = FAIL)</span>
+            <pre class="terminal-content">Student Name: Christopher Balana
+Senior High School Strand (STEM, ABM, HUMSS, TVL, Others): Others
+Entrance Exam Score (0-100): 90
+Interview Score (0-100): 84
+First Screening Result (Pass/Fail): Fail
+
+===== ENROLLMENT ASSESSMENT RESULT =====
+
+Student Name: Christopher Balana
+SHS Strand: OTHERS
+Final Evaluation Score: 87.60
+Admission Result: Not Qualified
+Recommended Program: General Program</pre>
+          </div>
         </div>
+
       </div>
     </section>
+    <button class="scroll-top-btn" aria-label="Back to top">↑ Top</button>
   </main>
 
   <script src="../../../theme-toggle.js"></script>
   <script src="../../reveal-pop.js"></script>
+  <script src="../../scroll-to-top.js"></script>
 </body>
 </html>

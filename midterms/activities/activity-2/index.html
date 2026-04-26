@@ -24,6 +24,10 @@
   <main>
     <section class="panel hero">
       <div class="panel-inner hero-copy scroll-pop">
+        <a href="../../../index.html#midterm" class="return-link" style="display: inline-flex; margin-bottom: 1.8rem; gap: 0.5rem;">
+          <span>←</span>
+          <span>Back to Midterms</span>
+        </a>
         <h1>Activity 2: Operators</h1>
         <hr class="section-divider" />
         <p>Christopher Balana | BSIT 2-5</p>
@@ -36,14 +40,230 @@
         <p class="explanation-text">From my perspective, the task felt straightforward and manageable. 
           The instructions were clear, and applying the operators came naturally since the concepts were already familiar. 
           It was more of a practice exercise than a challenge, making it a smooth and confidence‑boosting activity.</p>
-        <div class="link-list center-actions">
-          <a class="return-link" href="../../../index.html#midterm">Back to Midterm</a>
+        <br>
+        
+        <!-- Question 1: Bitwise Operators -->
+        <div class="question-block">
+          <h3>Question 1: Bitwise Operators</h3>
+          <p>Create a Java program using bitwise operators that will produce the output: true, 10, false, 15.</p>
+          
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="code-window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+              </div>
+              <span class="code-window-title">operators.java</span>
+            </div>
+            <pre class="code-window-content"><span class="keyword">package</span> <span class="class">new_oop</span>;
+
+<span class="comment">/*
+ * 1. Create a Java program using bitwise operators
+ * that will produce the output: true, 10, false, 15.
+ */</span>
+
+<span class="keyword">public class</span> <span class="class">operators</span> {
+
+    <span class="keyword">public static void</span> <span class="function">main</span>(<span class="class">String</span>[] args) {
+        
+        <span class="keyword">int</span> a = <span class="number">2</span>;
+        <span class="keyword">int</span> b = <span class="number">8</span>;
+        <span class="keyword">int</span> c = <span class="number">15</span>;
+        
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(a &lt; b &amp;&amp; b &gt; a);  <span class="comment">// Logical AND: true if both conditions are true</span>
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(a | b);           <span class="comment">// Bitwise OR: result is 10</span>
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(a ^ b);           <span class="comment">// Bitwise XOR only evaluates both sides fully</span>
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(b | c);           <span class="comment">// Bitwise OR between b and c</span>
+    }
+}</pre>
+          </div>
+          
+          <div class="terminal-output">
+            <span class="terminal-title">Terminal</span>
+            <pre class="terminal-content">true
+10
+false
+15</pre>
+          </div>
         </div>
+        <br>
+        
+        <!-- Question 2: Ternary Operator -->
+        <div class="question-block">
+          <h3>Question 2: Ternary Operator</h3>
+          <p>Create a Java program using the ternary operator that will produce the output: true, false, 25, 30.</p>
+          
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="code-window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+              </div>
+              <span class="code-window-title">operators1.java</span>
+            </div>
+            <pre class="code-window-content"><span class="keyword">package</span> <span class="class">new_oop</span>;
+
+<span class="comment">/*
+ * 2. Create a Java program using the ternary operator
+ * that will produce the output: true, false, 25, 30.
+ */</span>
+
+<span class="keyword">public class</span> <span class="class">operators1</span> {
+
+    <span class="keyword">public static void</span> <span class="function">main</span>(<span class="class">String</span>[] args) {
+        
+        <span class="keyword">int</span> a = <span class="number">30</span>;
+        <span class="keyword">int</span> b = <span class="number">25</span>;
+        
+        <span class="keyword">boolean</span> trueOrFalse1 = (a &gt; b) ? <span class="keyword">true</span> : <span class="keyword">false</span>;  <span class="comment">// Ternary operator: returns true if a &gt; b</span>
+        <span class="keyword">boolean</span> trueOrFalse2 = (a &lt; b) ? <span class="keyword">true</span> : <span class="keyword">false</span>;  <span class="comment">// Ternary operator: returns true if a &lt; b</span>
+        <span class="keyword">int</span> num1 = (a &lt; b) ? a : b;                    <span class="comment">// Ternary operator: picks smaller value between a and b</span>
+        <span class="keyword">int</span> num2 = (a &gt; b) ? a : b;                    <span class="comment">// Ternary operator: picks larger value between a and b</span>
+        
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(trueOrFalse1);
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(trueOrFalse2);
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(num1);
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(num2);
+    }
+}</pre>
+          </div>
+          
+          <div class="terminal-output">
+            <span class="terminal-title">Terminal</span>
+            <pre class="terminal-content">true
+false
+25
+30</pre>
+          </div>
+        </div>
+        <br>
+        
+        <!-- Question 3: Assignment Operators -->
+        <div class="question-block">
+          <h3>Question 3: Assignment Operators</h3>
+          <p>Create a Java program using assignment operators that will produce the output: Addition: 120, Subtraction: 70, Multiplication: 144, Division: 16.</p>
+          
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="code-window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+              </div>
+              <span class="code-window-title">operators2.java</span>
+            </div>
+            <pre class="code-window-content"><span class="keyword">package</span> <span class="class">new_oop</span>;
+
+<span class="comment">/*
+ * 3. Create a Java program using assignment operators
+ * that will produce the output: Addition: 120, Subtraction: 70, Multiplication: 144, Division: 16.
+ */</span>
+
+<span class="keyword">public class</span> <span class="class">operators2</span> {
+
+    <span class="keyword">public static void</span> <span class="function">main</span>(<span class="class">String</span>[] args) {
+        
+        <span class="keyword">int</span> a = <span class="number">20</span>;
+        <span class="keyword">int</span> b = <span class="number">100</span>;
+        <span class="keyword">int</span> c = <span class="number">36</span>;
+        <span class="keyword">int</span> d = <span class="number">112</span>;
+        
+        <span class="keyword">int</span> add = a += <span class="number">100</span>;     <span class="comment">// a = a + 100 (a = 20 + 100) = 120</span>
+        <span class="keyword">int</span> subtract = b -= <span class="number">30</span>;  <span class="comment">// b = b - 30 (b = 100 - 30) = 70</span>
+        <span class="keyword">int</span> multip = c *= <span class="number">4</span>;      <span class="comment">// c = c * 4 (c = 36 * 4) = 144</span>
+        <span class="keyword">int</span> divide = d /= <span class="number">7</span>;      <span class="comment">// d = d / 7 (d = 112 / 7) = 16</span>
+        
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Addition: "</span> + add);
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Subtraction: "</span> + subtract);
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Multiplication: "</span> + multip);
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="string">"Division: "</span> + divide);
+    }
+}</pre>
+          </div>
+          
+          <div class="terminal-output">
+            <span class="terminal-title">Terminal</span>
+            <pre class="terminal-content">Addition: 120
+Subtraction: 70
+Multiplication: 144
+Division: 16</pre>
+          </div>
+        </div>
+        <br>
+        
+        <!-- Question 4: Arithmetic, Relational, Logical, and Unary Operators -->
+        <div class="question-block">
+          <h3>Question 4: Arithmetic, Relational, Logical, and Unary Operators</h3>
+          <p>Create a Java program using arithmetic, relational, logical, and unary operators that will produce the output: FALSE, TRUE, TRUE, 40, TRUE, FALSE, FALSE, 80.</p>
+          
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="code-window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+              </div>
+              <span class="code-window-title">operators3.java</span>
+            </div>
+            <pre class="code-window-content"><span class="keyword">package</span> <span class="class">new_oop</span>;
+
+<span class="comment">/*
+ * 4. Create a Java program using arithmetic, relational, logical, and unary operators
+ * that will produce the output: FALSE, TRUE, TRUE, 40, TRUE, FALSE, FALSE, 80.
+ */</span>
+
+<span class="keyword">public class</span> <span class="class">operators3</span> {
+
+    <span class="keyword">public static void</span> <span class="function">main</span>(<span class="class">String</span>[] args) {
+        
+        <span class="keyword">int</span> a = <span class="number">20</span>;
+        <span class="keyword">int</span> b = <span class="number">19</span>;
+        <span class="keyword">int</span> c = <span class="number">40</span>;
+        
+        <span class="keyword">boolean</span> result1 = b &gt; a;                      <span class="comment">// 19 &gt; 20 = FALSE</span>
+        <span class="keyword">boolean</span> result2 = (a &gt; b &amp;&amp; b &lt; a);         <span class="comment">// 20 &gt; 19 = TRUE, 19 &lt; 20 = TRUE, THEREFORE = TRUE</span>
+        <span class="keyword">boolean</span> result3 = (c &gt; a &amp; b &lt; a);         <span class="comment">// 40 &gt; 20 = TRUE, 19 &lt; 20 = TRUE, THEREFORE = TRUE</span>
+        <span class="keyword">int</span> result4 = a ++ + b++;                    <span class="comment">// 20 + 19 = 39, but result4 is incremented in result4 = 40</span>
+        <span class="keyword">boolean</span> result5 = result4 &lt; c;              <span class="comment">// 39 = 40 = FALSE, 39 &lt; 20 = FALSE, THEREFORE = FALSE</span>
+        <span class="keyword">boolean</span> result6 = result4 == a || result4 &lt; b;  <span class="comment">// 39 = 21 = FALSE, 39 &lt; 20 = TRUE, THEREFORE = FALSE</span>
+        <span class="keyword">int</span> result7 = ++result4 + c ++;              <span class="comment">// result 30, afterwards c = 39</span>
+        
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="class">String</span>.<span class="function">valueOf</span>(result1).<span class="function">toUpperCase</span>());
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="class">String</span>.<span class="function">valueOf</span>(result2).<span class="function">toUpperCase</span>());
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="class">String</span>.<span class="function">valueOf</span>(result3).<span class="function">toUpperCase</span>());
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(result4);       <span class="comment">// prints 40 because it is incremented</span>
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="class">String</span>.<span class="function">valueOf</span>(result5).<span class="function">toUpperCase</span>());
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="class">String</span>.<span class="function">valueOf</span>(result6).<span class="function">toUpperCase</span>());
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(<span class="class">String</span>.<span class="function">valueOf</span>(result7).<span class="function">toUpperCase</span>());
+        <span class="class">System</span>.<span class="keyword">out</span>.<span class="function">println</span>(result8);
+    }
+}</pre>
+          </div>
+          
+          <div class="terminal-output">
+            <span class="terminal-title">Terminal</span>
+            <pre class="terminal-content">FALSE
+TRUE
+TRUE
+40
+TRUE
+FALSE
+FALSE
+80</pre>
+          </div>
+        </div>
+        <br>
+        
+
       </div>
     </section>
+    <button class="scroll-top-btn" aria-label="Back to top">↑ Top</button>
   </main>
 
   <script src="../../../theme-toggle.js"></script>
   <script src="../../reveal-pop.js"></script>
+  <script src="../../scroll-to-top.js"></script>
 </body>
 </html>

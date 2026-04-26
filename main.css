@@ -1207,3 +1207,305 @@ body.midterm-entry .hero-copy h1 {
 		height: 2.65rem;
 	}
 }
+/* Exam Content Styles */
+.exam-section {
+	margin: 1.5rem 0;
+	padding: 1.8rem;
+	background-color: var(--surface-card);
+	border: var(--pixel-border);
+	border-radius: var(--card-radius);
+	box-shadow: var(--pixel-shadow);
+}
+
+.exam-section h3 {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	font-family: "Press Start 2P", cursive;
+	font-size: 1.4rem;
+	color: var(--ink);
+	text-transform: uppercase;
+}
+
+.variable-table,
+.explanation-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 0.8rem;
+	background-color: var(--paper);
+	border: var(--pixel-border);
+}
+
+.variable-table thead,
+.explanation-table thead {
+	background-color: var(--window);
+	color: var(--ink);
+}
+
+.variable-table th,
+.explanation-table th {
+	padding: 1.2rem;
+	text-align: left;
+	font-weight: bold;
+	border: 2px solid var(--ink);
+	font-family: VT323, monospace;
+	font-size: 1.1rem;
+}
+
+.variable-table td,
+.explanation-table td {
+	padding: 1rem;
+	border: 2px solid var(--ink);
+	font-family: VT323, monospace;
+	font-size: 1rem;
+	color: var(--ink);
+	vertical-align: top;
+	line-height: 1.5;
+}
+
+.variable-table tbody tr:nth-child(odd),
+.explanation-table tbody tr:nth-child(odd) {
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+.variable-table tbody tr:nth-child(even),
+.explanation-table tbody tr:nth-child(even) {
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="night"] .variable-table,
+[data-theme="night"] .explanation-table {
+	background-color: var(--paper);
+	border-color: var(--ink);
+}
+
+[data-theme="night"] .variable-table thead,
+[data-theme="night"] .explanation-table thead {
+	background-color: var(--window);
+}
+
+[data-theme="night"] .variable-table tbody tr:nth-child(odd),
+[data-theme="night"] .explanation-table tbody tr:nth-child(odd) {
+	background-color: rgba(30, 66, 87, 0.3);
+}
+
+[data-theme="night"] .variable-table tbody tr:nth-child(even),
+[data-theme="night"] .explanation-table tbody tr:nth-child(even) {
+	background-color: rgba(30, 66, 87, 0.6);
+}
+
+.output-box {
+	background-color: var(--ink);
+	color: var(--paper);
+	padding: 1.5rem;
+	border-radius: var(--card-radius);
+	border: var(--pixel-border);
+	margin-top: 0.8rem;
+	font-family: VT323, monospace;
+	font-size: 1.6rem;
+	box-shadow: var(--pixel-shadow);
+	text-align: center;
+}
+
+.output-box code {
+	font-family: VT323, monospace;
+	font-size: 1.6rem;
+}
+
+/* Question Blocks and Terminal Output */
+.question-block {
+	margin: 2rem 0;
+	padding: 1.5rem;
+	background-color: var(--surface-card);
+	border: var(--pixel-border);
+	border-radius: var(--card-radius);
+	box-shadow: var(--pixel-shadow);
+}
+
+.question-block h3 {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	font-family: "Press Start 2P", cursive;
+	font-size: 1.5rem;
+	color: var(--ink);
+	text-transform: uppercase;
+}
+
+.question-block p {
+	font-size: 1.2rem;
+	margin-bottom: 1.2rem;
+	color: var(--ink);
+	line-height: 1.6;
+}
+
+/* Code Window Styling */
+.code-window {
+	background-color: #282a36;
+	border: var(--pixel-border);
+	border-radius: var(--small-radius);
+	margin: 1.2rem 0;
+	overflow: hidden;
+	box-shadow: var(--pixel-shadow);
+}
+
+.code-window-header {
+	background-color: #3f3f46;
+	padding: 1rem 1.2rem;
+	display: flex;
+	align-items: center;
+	border-bottom: 2px solid var(--ink);
+}
+
+/* Scroll to Top Button */
+.scroll-top-btn {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.63rem 0.78rem 0.55rem;
+	border: var(--pixel-border);
+	border-radius: var(--control-radius);
+	font-family: "Press Start 2P", monospace;
+	font-size: 0.64rem;
+	text-transform: uppercase;
+	line-height: 1.6;
+	letter-spacing: 0;
+	background: var(--surface-return);
+	box-shadow: var(--pixel-shadow);
+	transition: transform 120ms steps(2, end), box-shadow 120ms steps(2, end), opacity 120ms ease-out;
+	opacity: 0;
+	pointer-events: none;
+	cursor: pointer;
+	z-index: 1000;
+}
+
+.scroll-top-btn.visible {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.scroll-top-btn:hover,
+.scroll-top-btn:focus-visible {
+	outline: none;
+	transform: translate(-2px, -2px);
+	box-shadow: 6px 6px 0 var(--hover-shadow);
+	background-color: var(--yellow);
+}
+
+@media (max-width: 768px) {
+	.scroll-top-btn {
+		bottom: 1rem;
+		right: 1rem;
+		padding: 0.5rem 0.6rem 0.45rem;
+		font-size: 0.55rem;
+	}
+}
+
+.code-window-controls {
+	display: flex;
+	gap: 0.6rem;
+	margin-right: 1rem;
+}
+
+.control {
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+.control.red {
+	background-color: #ff5f56;
+}
+
+.control.yellow {
+	background-color: #ffbd2e;
+}
+
+.control.green {
+	background-color: #27c93f;
+}
+
+.code-window-title {
+	font-family: VT323, monospace;
+	font-size: 1.1rem;
+	color: #f8f8f2;
+}
+
+.code-window-content {
+	background-color: #282a36;
+	color: #f8f8f2;
+	padding: 1.5rem;
+	margin: 0;
+	font-family: VT323, monospace;
+	font-size: 1.2rem;
+	line-height: 2;
+	overflow-x: auto;
+	text-align: left;
+}
+
+/* Syntax Highlighting */
+.keyword {
+	color: #ff79c6;
+}
+
+.class {
+	color: #8be9fd;
+}
+
+.function {
+	color: #50fa7b;
+}
+
+.number {
+	color: #f1fa8c;
+}
+
+.string {
+	color: #f1fa8c;
+}
+
+.comment {
+	color: #6272a4;
+	font-style: italic;
+}
+
+/* Terminal Output Styling */
+.terminal-output {
+	background-color: #1e1e1e;
+	border: var(--pixel-border);
+	border-radius: var(--small-radius);
+	margin: 1.2rem 0;
+	overflow: hidden;
+	box-shadow: var(--pixel-shadow);
+}
+
+.terminal-title {
+	background-color: #2d2d30;
+	color: #f8f8f2;
+	padding: 1rem 1.2rem;
+	display: block;
+	font-family: VT323, monospace;
+	font-size: 1.1rem;
+	border-bottom: 2px solid var(--ink);
+}
+
+.terminal-content {
+	background-color: #1e1e1e;
+	color: #00ff00;
+	padding: 1.5rem;
+	margin: 0;
+	font-family: VT323, monospace;
+	font-size: 1.3rem;
+	line-height: 2;
+	text-align: left;
+}
+
+[data-theme="night"] .code-window,
+[data-theme="night"] .code-window-header,
+[data-theme="night"] .terminal-output,
+[data-theme="night"] .terminal-title {
+	background-color: #3f3f46;
+	border-color: var(--ink);
+}
