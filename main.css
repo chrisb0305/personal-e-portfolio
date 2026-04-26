@@ -1731,6 +1731,27 @@ body.midterm-entry .hero-copy h1 {
 	background: var(--hover-fill);
 }
 
+[data-theme="night"] .file-attachments {
+	background-color: color-mix(in srgb, var(--surface-card) 58%, var(--paper) 42%);
+	border-color: var(--ink);
+	box-shadow: var(--pixel-shadow);
+}
+
+[data-theme="night"] .file-attachments h4 {
+	color: var(--ink);
+}
+
+[data-theme="night"] .download-link {
+	background: color-mix(in srgb, var(--surface-toggle) 82%, var(--window) 18%);
+	color: var(--ink);
+	border-color: var(--ink);
+}
+
+[data-theme="night"] .download-link:hover,
+[data-theme="night"] .download-link:focus-visible {
+	background: color-mix(in srgb, var(--hover-fill) 78%, var(--surface-toggle) 22%);
+}
+
 @media (max-width: 760px) {
 	.file-attachments {
 		padding: 0.85rem 0.9rem;
