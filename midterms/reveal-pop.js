@@ -29,7 +29,7 @@
         }
       });
     },
-    { rootMargin: '0px 0px -14% 0px', threshold: 0.2 }
+    { rootMargin: '0px 0px -14% 0px', threshold: 0.01 }
   );
 
   targets.forEach((target) => observer.observe(target));
